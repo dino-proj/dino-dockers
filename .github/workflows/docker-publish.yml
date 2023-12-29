@@ -19,7 +19,7 @@ jobs:
       with:
         image: dinospring/jdk
         tags: 11
-        directory: jdk-11
+        dockerfile: jdk-11/Dockerfile
         registry: docker.io
         enableBuildKit: true
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -30,7 +30,7 @@ jobs:
       with:
         image: dinospring/jdk
         tags: 17
-        directory: jdk-17
+        dockerfile: jdk-17/Dockerfile
         registry: docker.io
         enableBuildKit: true
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -41,7 +41,7 @@ jobs:
       with:
         image: dinospring/jdk
         tags: 20
-        directory: jdk-20
+        dockerfile: jdk-20/Dockerfile
         registry: docker.io
         enableBuildKit: true
         username: ${{ secrets.DOCKER_USERNAME }}
