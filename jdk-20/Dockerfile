@@ -2,6 +2,8 @@ FROM openjdk:20-jdk-slim
 
 LABEL org.opencontainers.image.authors="cody@dinodev.cn"
 
+RUN apt-get update && apt-get install -y procps
+
 # Copy the local command-line file to the image
 COPY ./bin/start /app/bin/
 
