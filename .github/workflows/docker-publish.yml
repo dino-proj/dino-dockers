@@ -1,0 +1,48 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      name: Check out code
+      
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image jdk:11
+      with:
+        image: dinospring/jdk
+        tags: 11
+        directory: jdk-11
+        registry: docker.io
+        enableBuildKit: true
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image jdk:17
+      with:
+        image: dinospring/jdk
+        tags: 17
+        directory: jdk-17
+        registry: docker.io
+        enableBuildKit: true
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image jdk:20
+      with:
+        image: dinospring/jdk
+        tags: 20
+        directory: jdk-20
+        registry: docker.io
+        enableBuildKit: true
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
