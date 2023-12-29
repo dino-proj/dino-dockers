@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo 'USAGE: docker run -p <server-port>:<server-port>/tcp -v <your-app-path>:/app -v <your-app-logs-path>:/app/logs dinospring/jdk:11'

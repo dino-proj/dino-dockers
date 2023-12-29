@@ -1,0 +1,45 @@
+version: "3"
+services:
+  kibana:
+    image: kibana:7.13.4
+    container_name: kibana7
+    environment:
+      - I18N_LOCALE=zh-CN
+      - XPACK_GRAPH_ENABLED=true
+      - TIMELION_ENABLED=true
+      - XPACK_MONITORING_COLLECTION_ENABLED="true"
+      - ELASTICSEARCH_HOSTS="http://192.168.1.3:9200"
+    ports:
+      - "5601:5601"
+    networks:
+      - es7net
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+
+  elasticsearch:
+    image: elasticsearch:7.13.4
+    container_name: elasticsearch
+    environment:
+      - "discovery.type=single-node"
+      - node.name=es7_01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /opt/es/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /opt/es/data:/usr/share/elasticsearch/data
+      - /opt/es/plugins:/usr/share/elasticsearch/plugins
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - es7net
+
+networks:
+  es7net:
+    driver: bridge
