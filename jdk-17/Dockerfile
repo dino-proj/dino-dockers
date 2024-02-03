@@ -3,7 +3,7 @@ FROM openjdk:17-jdk-slim
 LABEL org.opencontainers.image.authors="cody@dinodev.cn"
 
 RUN apt-get update && apt-get install -y procps
-
+RUN apt-get update; apt-get install -y fontconfig libfreetype6 
 # Copy the local command-line file to the image
 COPY ./bin/start /app/bin/
 
