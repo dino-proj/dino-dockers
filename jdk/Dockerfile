@@ -1,3 +1,5 @@
+ARG JAVA_VERSION
+
 FROM openjdk:${JAVA_VERSION}-jdk-slim
 
 LABEL org.opencontainers.image.authors="cody@dinodev.cn"
