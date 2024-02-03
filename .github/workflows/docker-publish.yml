@@ -2,50 +2,54 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-      name: Check out code
-      
-    - uses: mr-smithers-excellent/docker-build-push@v6
-      name: Build & push Docker image jdk:11
-      with:
-        image: dinospring/jdk
-        tags: 11
-        directory: ./jdk-11
-        dockerfile: jdk-11/Dockerfile
-        registry: docker.io
-        enableBuildKit: true
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: actions/checkout@v3
+        name: Check out code
 
-    - uses: mr-smithers-excellent/docker-build-push@v6
-      name: Build & push Docker image jdk:17
-      with:
-        image: dinospring/jdk
-        tags: 17
-        directory: ./jdk-17
-        dockerfile: jdk-17/Dockerfile
-        registry: docker.io
-        enableBuildKit: true
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build & push Docker image jdk:11
+        with:
+          image: dinospring/jdk
+          tags: 11
+          directory: ./jdk
+          dockerfile: jdk/Dockerfile
+          registry: docker.io
+          enableBuildKit: true
+          buildArgs: |
+            JAVA_VERSION=11
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - uses: mr-smithers-excellent/docker-build-push@v6
-      name: Build & push Docker image jdk:20
-      with:
-        image: dinospring/jdk
-        tags: 20
-        directory: ./jdk-20
-        dockerfile: jdk-20/Dockerfile
-        registry: docker.io
-        enableBuildKit: true
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build & push Docker image jdk:17
+        with:
+          image: dinospring/jdk
+          tags: 17
+          directory: ./jdk
+          dockerfile: jdk/Dockerfile
+          registry: docker.io
+          enableBuildKit: true
+          buildArgs: |
+            JAVA_VERSION=17
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build & push Docker image jdk:20
+        with:
+          image: dinospring/jdk
+          tags: 20
+          directory: ./jdk
+          dockerfile: jdk/Dockerfile
+          registry: docker.io
+          enableBuildKit: true
+          buildArgs: |
+            JAVA_VERSION=20
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
