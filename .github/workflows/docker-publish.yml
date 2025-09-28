@@ -41,15 +41,29 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build & push Docker image jdk:20
+        name: Build & push Docker image jdk:21
         with:
           image: dinospring/jdk
-          tags: 20
+          tags: 21
           directory: ./jdk
           dockerfile: jdk/Dockerfile
           registry: docker.io
           enableBuildKit: true
           buildArgs: |
-            JAVA_VERSION=20
+            JAVA_VERSION=21
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build & push Docker image jdk:25
+        with:
+          image: dinospring/jdk
+          tags: 25
+          directory: ./jdk
+          dockerfile: jdk/Dockerfile
+          registry: docker.io
+          enableBuildKit: true
+          buildArgs: |
+            JAVA_VERSION=25
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
