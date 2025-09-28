@@ -34,8 +34,22 @@ WORKDIR /app
 ENTRYPOINT ["/bin/bash", "/app/bin/start", "--docker"]
 ```
 
-## JDK:20
-基于 `openjdk:20-jdk-slim`
+## JDK:21
+基于 `openjdk:21-jdk-slim`
+
+```dockerfile
+
+ENV IN_DOCKER=true
+
+ENV APP_LOG_DIR=/logs
+
+WORKDIR /app
+
+ENTRYPOINT ["/bin/bash", "/app/bin/start", "--docker"]
+```
+
+## JDK:25
+基于 `openjdk:25-jdk-slim`
 
 ```dockerfile
 
