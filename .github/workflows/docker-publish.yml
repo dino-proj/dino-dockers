@@ -58,7 +58,7 @@ jobs:
         name: Build & push Docker image jdk:25
         with:
           image: dinospring/jdk
-          tags: 25
+          tags: 25,latest
           directory: ./jdk
           dockerfile: jdk/Dockerfile
           registry: docker.io
@@ -67,3 +67,14 @@ jobs:
             JAVA_VERSION=25
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_PASSWORD }}
+        with:
+          destination_container_repo: dinospring/jdk
+          provider: dockerhub
+          short_description: '🦖dino.dev spring JDK runtime images 😊'
+          readme_file: 'README.md'
