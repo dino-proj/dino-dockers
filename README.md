@@ -13,6 +13,8 @@
 
 ENV IN_DOCKER=true
 
+ENV JDK_VERSION=11
+
 ENV APP_LOG_DIR=/logs
 
 WORKDIR /app
@@ -26,6 +28,8 @@ ENTRYPOINT ["/bin/bash", "/app/bin/start", "--docker"]
 ```dockerfile
 
 ENV IN_DOCKER=true
+
+ENV JDK_VERSION=17
 
 ENV APP_LOG_DIR=/logs
 
@@ -41,6 +45,8 @@ ENTRYPOINT ["/bin/bash", "/app/bin/start", "--docker"]
 
 ENV IN_DOCKER=true
 
+ENV JDK_VERSION=21
+
 ENV APP_LOG_DIR=/logs
 
 WORKDIR /app
@@ -54,6 +60,8 @@ ENTRYPOINT ["/bin/bash", "/app/bin/start", "--docker"]
 ```dockerfile
 
 ENV IN_DOCKER=true
+
+ENV JDK_VERSION=25
 
 ENV APP_LOG_DIR=/logs
 
